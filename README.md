@@ -6,20 +6,22 @@
 A DSL defined completely within Java to make user interface definition code flow hierarchically like the user interface
 and be more declarative.
 
-    import static com.insilicalabs.swingbuilder.Creators.*;
-    import static com.insilicalabs.swingbuilder.Configurators.*;
-    
-    public class HelloWorld {
-        public static void main(String[] args) {
-            frame(
-                panel(
-                    label("Hello World!")
-                ),
-                pack(),
-                show()
-            )
-        }
+```java
+import static com.insilicalabs.swingbuilder.Configurators.*;
+import static com.insilicalabs.swingbuilder.Creators.*;
+
+public class HelloWorld {
+    public static void main(String[] args) {
+        frame(
+            contents(
+                label("Hello World!")
+            ),
+            pack(),
+            show()
+        );
     }
+}
+```
 
 Yes, that really works in _pure Java_.
 
@@ -42,25 +44,29 @@ examples illustrating both cases.
 
 Add a Swing Builder panel to a legacy panel.
 
-    // The legacy panel is created by whatever legacy code...
-    JPanel legacyPanel = ...
-    // now configure legacy panel with swing builder code. `contents` will "append" (by calling `JPanel.add`)
-    // components.
-    configure( legacyPanel,
-        contents(
-            panel(
-                label("All the goodies go here.")
-            )
+```java
+// The legacy panel is created by whatever legacy code...
+JPanel legacyPanel = ...
+// now configure legacy panel with swing builder code. `contents` will "append" (by calling `JPanel.add`)
+// components.
+configure( legacyPanel,
+    contents(
+        panel(
+            label("All the goodies go here.")
         )
     )
+);
+```
 
 Add a legacy panel to a Swing Builder panel.
 
-    JPanel legacyPanel = ...
-    JPanel sbPanel = panel(
-        label("Here's the legacy panel you requested:"),
-        legacyPanel
-    );
+```java
+JPanel legacyPanel = ...
+JPanel sbPanel = panel(
+    label("Here's the legacy panel you requested:"),
+    legacyPanel
+);
+```
 
 You might be wondering why `contents` appears in the first example and not the second. In fact, it doesn't need to
 appear in the first example, either. It's optional. I put `contents` in the first example so that I may reference it
