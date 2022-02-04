@@ -1,0 +1,33 @@
+
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+version = "0.1.0"
+group = "com.insilicalabs"
+
+publishing {
+    publications {
+        swingbuilder(MavenPublication) {
+            from components.java
+            artifactId "swingbuilder"
+        }
+    }
+    repositories {
+        maven {
+            name "myRepo"
+            url = layout.buildDirectory.dir("repo")
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.slf4j:slf4j-api:1.7.35' // we were using 1.7.12 on 2022-02-03
+    implementation 'com.miglayout:miglayout-swing:11.0'
+    testImplementation 'junit:junit:4.13.2'
+}
