@@ -1,4 +1,7 @@
 # Swing Builder
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/jzwolak/swing-builder/blob/main/LICENSE)
+[![Maven Central](https://img.shields.io/maven-central/v/com.insilicalabs/swing-builder.svg)](https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.insilicalabs%22)
+
 
 A DSL defined completely within Java to make user interface definition code flow hierarchically like the user interface
 and be more declarative.
