@@ -9,14 +9,16 @@ and be more declarative.
     import static com.insilicalabs.swingbuilder.Creators.*;
     import static com.insilicalabs.swingbuilder.Configurators.*;
     
-    public static void main(String[] args) {
-        frame(
-            panel(
-                label("Hello World!")
-            ),
-            pack(),
-            show()
-        )
+    public class HelloWorld {
+        public static void main(String[] args) {
+            frame(
+                panel(
+                    label("Hello World!")
+                ),
+                pack(),
+                show()
+            )
+        }
     }
 
 Yes, that really works in _pure Java_.
