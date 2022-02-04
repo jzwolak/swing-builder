@@ -23,7 +23,7 @@ Yes, that really works in _pure Java_.
 * As UIs get more complex, it's important to be able to see where the UI relates to the code and vice versa.
 * This is 100% _interoperable_ with existing legacy applications! See below for examples.
 * Did I mention this is 100% interoperable with existing legacy applications? That means you can integrate it slowly,
-  as time permits, into your project. Writing all new code in Swing Builder with no fear of interoperability with
+  as time permits, into your project. Writing all new code in Swing Builder with no fear of non-interoperability with
   legacy code.
 * Writing UIs is _fast_ compared to any other way of creating Swing UIs I've tried.
 * UIs are maintainable. No need to wrangle with XML, JSON, or proprietary tools for converting those to Java.
