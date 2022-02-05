@@ -72,4 +72,4 @@ You might be wondering why `contents` appears in the first example and not the s
 appear in the first example, either. It's optional. I put `contents` in the first example so that I may reference it
 and talk about what it does. The `configure` function is called implicitly from within the `panel` function. The
 `configure` function will automatically detect any `Component`s in its argument list and pass them to an implicit call
-to the `contents` function.
+to the `contents` function under certain conditions. When in doubt, explicitly use the `contents` function.
