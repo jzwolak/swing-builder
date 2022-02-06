@@ -47,6 +47,14 @@ See [Why?](#why)).
 * Code within the hierarchy cannot contain forward references to other components within the hierarchy without those
   components being defined outside the hierarchy first (they can then, of course, be added to the hierarchy).
   See [Referencing Components](#referencing-components).
+* Lack of view-as-a-function-of-state. When I set out to write Swing Builder I wanted React in Java. In fact, I didn't
+  want to write anything new, I wanted to use something that existed and I explored many options. Nothing was working
+  in Java and providing the kind of view-as-a-function-of-state experience I wanted. Swing Builder failed to reach this,
+  too. I got closer than anything else I saw, but I still did not achieve this goal in pure Java.
+* There's more... I just don't feel as inspired to write about the shortcomings as I do the amazingingness. I use Swing
+  Builder everyday for an enterprise application and every time I write code in it compared to times I enter parts of
+  the code base written in various other UI creation tools or plain Swing... I breathe a breath of fresh air. It's no
+  React, but if you're working with legacy code in Java, I think it's a super tool.
 
 ## Legacy Interoperability
 
