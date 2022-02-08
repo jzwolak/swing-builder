@@ -1,6 +1,7 @@
 # Swing Builder
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/jzwolak/swing-builder/blob/main/LICENSE)
-[![Maven Central](https://img.shields.io/maven-central/v/com.insilicalabs/swing-builder.svg)](https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.insilicalabs%22)
+[![Maven Central](https://img.shields.io/maven-central/v/com.insilicalabs/swing-builder?version=0.1.0?label=Maven%20Central)](https://search.maven.org/search?q=g:com.insilicalabs%20a:swing-builder)
+
 
 
 A DSL defined completely within Java to make user interface definition code flow hierarchically like the user interface
@@ -36,6 +37,8 @@ Yes, that really works in _pure Java_.
 * UIs are maintainable. No need to wrangle with XML, JSON, or proprietary tools for converting those to Java.
 * UI code doesn't break as IDE tools progress (or don't) or development team changes IDEs. Ever use Netbeans GUI builder
   anyone?
+* Swing Builder is stable. It's been used in production code since 2014 and the core architecture is unchanged since
+  then.
 
 ## Why Not?
 
@@ -51,6 +54,13 @@ See [Why?](#why)).
   want to write anything new, I wanted to use something that existed and I explored many options. Nothing was working
   in Java and providing the kind of view-as-a-function-of-state experience I wanted. Swing Builder failed to reach this,
   too. I got closer than anything else I saw, but I still did not achieve this goal in pure Java.
+* New projects probably should not use Swing Builder, or Swing for that matter. Swing Builder is targeting existing
+  Swing based projects in order to help make the codebase a bit more modern in its maintainability, readability,
+  and robustness. New projects have choices far superior using tools based on React, JavaFX, Electron, and others. I
+  couldn't use those, so I made Swing Builder.
+* Not all Swing components and methods are mapped. However, you can contribute to the project or extend Swing Builder
+  yourself. The reason for not mapping all components and methods is simply that I haven't used them all and so I have
+  had no need to map them all.
 * There's more... I just don't feel as inspired to write about the shortcomings as I do the amazingingness. I use Swing
   Builder everyday for an enterprise application and every time I write code in it compared to times I enter parts of
   the code base written in various other UI creation tools or plain Swing... I breathe a breath of fresh air. It's no
@@ -95,10 +105,10 @@ to the `contents` function under certain conditions. When in doubt, explicitly u
 
 ## State
 
-Swing Builder provides a builtin class for handling arbitrary application state and syncing that state with view
-components. This is not a panacea and leaves much room for improvement. However, I have found it does well in many
-cases, is substantially better than nothing, and has not left me wanting enough to write a better solution yet. I see
-it's flaws clearly, though.
+Swing Builder provides a builtin class, `ModelBinder`, for handling arbitrary application state and syncing that state
+with view components. This is not a panacea and leaves much room for improvement. However, I have found it does well in
+many cases, is substantially better than nothing, and has not left me wanting enough to write a better solution, yet. I
+see it's flaws clearly, though.
 
 Here's a basic example of how to use state.
 
@@ -199,7 +209,7 @@ configure(aLabel, redBackground);
 ### Composite Configurations
 
 A configuration can also be an `Object[]` or a `Collection`. Each object in the array or collection may in turn also be
-a `Object[]` or `Collection` nested arbitrarily deep to the limit of the JVM stack (recursion is used to unpack the
+an `Object[]` or `Collection` nested arbitrarily deep to the limit of the JVM stack (recursion is used to unpack the
 nesting). In practice, it should be unlikely that 2-3 levels of depth ever happen, but if you automate creation of
 configurations, maybe you'll create some seriously deep configurations.
 
@@ -227,7 +237,7 @@ to find a default configurator based on the object type and the creator type. Fo
 is a default configurator for `Component` objects of `contents`. And in fact, this mechanism is extensible.
 
 Every creator calls its respective configure function (if there is one other than the default). That configure function
-then calls the fully specified `configure` function:
+then calls the fully specified `configure` function with a custom `mapFunction`:
 
 ```java
 public static <T extends Component> T configure(T component, Function mapFunction, Object... configuration) {
