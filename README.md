@@ -1,6 +1,6 @@
 # Swing Builder
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/jzwolak/swing-builder/blob/main/LICENSE)
-[![Maven Central](https://img.shields.io/maven-central/v/com.insilicalabs/swing-builder?version=0.1.0?label=Maven%20Central)](https://search.maven.org/search?q=g:com.insilicalabs%20a:swing-builder)
+[![Maven Central](https://img.shields.io/maven-central/v/com.insilicalabs/swing-builder?label=Maven%20Central)](https://search.maven.org/search?q=g:com.insilicalabs%20a:swing-builder)
 
 
 
