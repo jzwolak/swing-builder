@@ -99,9 +99,10 @@ JPanel sbPanel = panel(
 
 You might be wondering why `contents` appears in the first example and not the second. In fact, it doesn't need to
 appear in the first example, either. It's optional. I put `contents` in the first example so that I may reference it
-and talk about what it does. The `configure` function is called implicitly from within the `panel` function. The
-`configure` function will automatically detect any `Component`s in its argument list and pass them to an implicit call
-to the `contents` function under certain conditions. When in doubt, explicitly use the `contents` function.
+and talk about what it does. The `configure` function is called implicitly from within the `panel` function. In this
+case, the `configure` function will automatically detect any `Component`s in its argument list and pass them to an
+implicit call to the `contents` function because a `JPanel` is being configured. When in doubt, explicitly use the
+`contents` function. See [Default Configurators](#default-configurators).
 
 ## State
 

@@ -334,6 +334,18 @@ public class Configurators {
         };
     }
 
+    public static Configurator center(Component owner) {
+        return new Configurator() {
+            @Override
+            protected void apply(Component c) {
+                if (c instanceof Window) {
+                    Window window = (Window) c;
+                    window.setLocationRelativeTo(owner);
+                }
+            }
+        };
+    }
+
     public static Configurator pack() {
         return new Configurator() {
             @Override
