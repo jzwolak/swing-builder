@@ -9,6 +9,9 @@ version = "0.1.0"
 group = "com.insilicalabs"
 
 java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(11)
+    }
     withJavadocJar()
     withSourcesJar()
 }
