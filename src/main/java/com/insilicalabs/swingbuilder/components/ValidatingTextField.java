@@ -17,6 +17,7 @@ import static com.insilicalabs.swingbuilder.components.ValidatingTextField.Valid
 /**
  * Created by jzwolak on 9/28/16.
  */
+@SuppressWarnings("all")
 public class ValidatingTextField<T> extends JTextField {
 
     private Validator validator = ALWAYS_VALID;
