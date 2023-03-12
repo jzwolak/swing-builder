@@ -1,0 +1,2 @@
+- Change gradle dependency for miglayout to api instead of implementation. This will help with transitive dependencies.
+  - Same for slf4j??

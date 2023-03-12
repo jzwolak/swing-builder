@@ -1,11 +1,13 @@
 # Swing Builder
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/jzwolak/swing-builder/blob/main/LICENSE)
-[![Maven Central](https://img.shields.io/maven-central/v/com.insilicalabs/swing-builder?label=Maven%20Central)](https://search.maven.org/search?q=g:com.insilicalabs%20a:swing-builder)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.insilicalabs/swing-builder/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.insilicalabs/swing-builder)
 
 
 
-A DSL defined completely within Java to make user interface definition code flow hierarchically like the user interface
-and be more declarative.
+Swing Builder is a DSL defined completely within Java to make user interface definition code flow hierarchically like
+the user interface itself and be more declarative.
+
+For example,
 
 ```java
 import static com.insilicalabs.swingbuilder.Configurators.*;
@@ -313,3 +315,18 @@ JPanel form = panel(
 
 The application state is now separate from the view. Perhaps more importantly, updates to the application state and the
 view can be dynamically synced.
+
+
+## Getting Started
+
+Include the library from Maven central. If using Gradle, something like the following will work (assuming you've
+included the Maven Central repository):
+
+```
+dependencies {
+    implementation 'com.insilicalabs:swing-builder:0.1.1'
+}
+```
+
+Include the necessary (or all) configurators and creators and start using. See the above examples on how to include and
+use the classes and static methods (functions).
