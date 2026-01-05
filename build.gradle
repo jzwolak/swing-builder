@@ -1,105 +1,31 @@
 
 plugins {
     id 'java-library'
-    id 'maven-publish'
-    id 'signing'
+    id 'com.vanniktech.maven.publish' version '0.35.0'
 }
 
-version = "0.1.2"
-group = "com.insilicalabs"
-
-java {
-    withJavadocJar()
-    withSourcesJar()
-}
-
-publishing {
-    publications {
-        swingBuilder(MavenPublication) {
-            artifactId "swing-builder"
-            from components.java
-            // ensure dependency versions get locked at time of publication
-            versionMapping {
-                usage('java-api') {
-                    fromResolutionOf('runtimeClasspath')
-                }
-                usage('java-runtime') {
-                    fromResolutionResult()
-                }
-            }
-            pom {
-                name = 'Swing Builder'
-                description = 'A DSL defined in pure Java to make user interface code flow hierarchically like the user interface and be more declarative.'
-                url = 'https://github.com/jzwolak/swing-builder'
-                licenses {
-                    license {
-                        name = 'MIT License'
-                        url = 'https://opensource.org/licenses/MIT'
-                    }
-                }
-                developers {
-                    developer {
-                        id = 'jzwolak'
-                        name = 'Jason Zwolak'
-                        email = 'jzwolak@gmail.com'
-                    }
-                }
-                scm {
-                    connection = 'scm:git:git://github.com/jzwolak/swing-builder.git'
-                    developerConnection = 'scm:git:ssh://github.com/jzwolak/swing-builder.git'
-                    url = 'https://github.com/jzwolak/swing-builder.git'
-                }
-            }
-        }
-    }
-    repositories {
-        maven {
-            // file repo for testing:
-            name "buildDirRepo"
-            url = layout.buildDirectory.dir("repo")
-        }
-        if (project.hasProperty('sonatypeUsername') && project.hasProperty('sonatypePassword')) {
-            maven {
-                name "mavenCentral"
-
-                // Maven Central
-                //
-                // The following page has instructions for publishing with the old plugins:
-                //
-                //     https://central.sonatype.org/publish/publish-gradle/
-                //
-                // Or use the new plugin ("maven-publish") with the following:
-                //
-                //     https://docs.gradle.org/current/userguide/publishing_maven.html
-                //
-                // Perhaps use the host "s01.oss.sonatype.org" mentioned in https://issues.sonatype.org/browse/OSSRH-77859
-                //
-                // Guide to releasing (there are steps after `./gradlew publish`):
-                //
-                //     https://medium.com/@nmauti/publishing-a-project-on-maven-central-8106393db2c3
-                //
-                // The above is also discussed at sonatype's page in the first link. Basically... go to the following URL:
-                //
-                //     https://s01.oss.sonatype.org/#stagingRepositories
-                //
-                // And close the staging repo then "release" it.
-                //
-
-                url "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2"
-                credentials {
-                    username sonatypeUsername
-                    password sonatypePassword
-                }
-            }
-        } else {
-            println "sonatypeUsername or sonatypePassword not present. Publishing to maven central disabled."
-        }
-    }
-}
-
-signing {
-    sign publishing.publications.swingBuilder
-}
+// Publishing to Maven Central via the vanniktech plugin
+//
+// To publish, run: ./gradlew publishToMavenCentral
+//
+// Credentials setup:
+// 1. Create account at https://central.sonatype.com
+// 2. Migrate your namespace at https://central.sonatype.com/publishing/namespaces
+// 3. Generate a user token at https://central.sonatype.com/account
+// 4. Add to ~/.gradle/gradle.properties:
+//        mavenCentralUsername=<token-username>
+//        mavenCentralPassword=<token-password>
+//
+// For GPG signing, add to ~/.gradle/gradle.properties:
+//        signing.keyId=<last-8-chars-of-key-id>
+//        signing.password=<key-passphrase>
+//        signing.secretKeyRingFile=<path-to-secring.gpg>
+//
+// Or use in-memory signing with environment variables:
+//        ORG_GRADLE_PROJECT_signingInMemoryKey=<exported-key>
+//        ORG_GRADLE_PROJECT_signingInMemoryKeyId=<key-id>
+//        ORG_GRADLE_PROJECT_signingInMemoryKeyPassword=<passphrase>
+//
 
 javadoc {
     if(JavaVersion.current().isJava9Compatible()) {
